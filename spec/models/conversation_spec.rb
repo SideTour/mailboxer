@@ -5,7 +5,7 @@ describe Conversation do
   before do
     @entity1 = FactoryGirl.create(:user)
     @entity2 = FactoryGirl.create(:user)
-    @receipt1 = @entity1.send_message(@entity2,"Body","Subject", true, nil, Time.now, { category: "test_conversation" })
+    @receipt1 = @entity1.send_message(@entity2,"Body","Subject", true, nil, Time.now, { conversation_type: "test_conversation" })
     @receipt2 = @entity2.reply_to_all(@receipt1,"Reply body 1")
     @receipt3 = @entity1.reply_to_all(@receipt2,"Reply body 2")
     @receipt4 = @entity2.reply_to_all(@receipt3,"Reply body 3")
@@ -14,8 +14,8 @@ describe Conversation do
     @conversation = @message1.conversation
   end
 
-  it "should have the proper category" do
-    @conversation.category.should == "test_conversation"
+  it "should have the proper conversation_type" do
+    @conversation.conversation_type.should == "test_conversation"
   end
 
   it "should have proper original message" do

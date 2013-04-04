@@ -1,5 +1,5 @@
 class Conversation < ActiveRecord::Base
-  attr_accessible :subject, :category
+  attr_accessible :subject, :conversation_type
 
 	has_many :messages, :dependent => :destroy
 	has_many :receipts, :through => :messages
